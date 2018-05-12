@@ -2,7 +2,7 @@ import math
 from collections import defaultdict
 import itertools 
 import prettytable
-
+import time
 
 class sudoku:
     '''
@@ -98,14 +98,18 @@ class solver:
 
                         # Insert into Neighbor List
                         self.neighbor_list.append(((i,j),(a,b)))
-
-        self.bf_count = 0
-        self.bt_count = 0
-        
+  
         for i in range(9):
             for j in range(9):
                 if puzzle[i][j] != 0:
                     self.givens[(i,j)] = str(puzzle[i][j])
+
+        # Stats
+        self.bf_count = 0
+        self.bt_count = 0
+
+        self.time_elapsed = 0
+      
 
 
 
@@ -144,7 +148,10 @@ class solver:
             domains[var] = self.domain_list[:]   
         for key,value in self.givens.items():
             domains[key] = [value]
+        start = time.clock()
         result = self.backtrack(assignment, domains)
+        end = time.clock()
+        self.time_elapsed = round(end - start, 2)
         if self.is_solution(result):
             return result
         else:
@@ -207,6 +214,7 @@ class solver:
 
 
 def main(): 
+    print('-----~`PUZZLE 0`~-----\n') 
     # Create a sudoku puzzle with clues
     puzzle1 = sudoku([(0,0,5)])
     # We can add more clues 
@@ -222,10 +230,114 @@ def main():
     puzzle1._print()
 
     #Stats
-    table0 = prettytable.PrettyTable(["Sudoku Puzzle 1", '-'])
-    #table0.add_row(['time'])
+    table0 = prettytable.PrettyTable(["Sudoku Puzzle 0", '-'])
+    table0.add_row(['time', str(test0.time_elapsed) + 's'])
     table0.add_row(['clues',puzzle1.clue_counter])
     table0.add_row(['backtracks',test0.bt_count])
-    print(table0)
+    print(table0) 
+    
+    print('-----~`PUZZLE 1`~-----\n') 
+    # Puzzle with _Easy_ difficulty
+    easypuz = sudoku([(0,2,4),(0,3,6),(0,4,8),(0,5,1),(0,8,9),
+                      (1,1,1),(1,2,6),(1,6,3),(1,7,7),(1,8,4),
+                      (2,1,2),(2,2,9),(2,3,7),(2,5,3),
+                      (3,0,1),(3,2,3),
+                      (4,1,4),(4,3,2),(4,5,5),(4,7,1),
+                      (5,6,5),(5,8,8),
+                      (6,3,5),(6,5,9),(6,6,1),(6,7,3,),
+                      (7,0,7),(7,1,9),(7,6,4),(7,7,8),
+                      (8,0,6),(8,3,4),(8,4,1),(8,5,8),(8,6,9)])
+    easypuz._print()
+
+    easypuz_solve = solver(easypuz.puzzle)
+    easypuz.solution(easypuz_solve.solve_backtrack_search())
+
+    easypuz._print()
+
+    table1 = prettytable.PrettyTable(["Sudoku Puzzle 1", '-'])
+    table1.add_row(['time', str(easypuz_solve.time_elapsed) + 's'])
+    table1.add_row(['clues',easypuz.clue_counter])
+    table1.add_row(['backtracks',easypuz_solve.bt_count])
+    table1.add_row(['difficulty', 'easy'])
+    print(table1)
+
+    print('-----~`PUZZLE 2`~-----\n')
+    # Puzzle with _Medium_ difficulty
+    medpuz = sudoku([(0,4,2),(0,7,4),
+                     (1,2,8),(1,5,7),
+                     (2,0,1),(2,2,4),(2,3,8),(2,6,6),(2,7,3),
+                     (3,0,7),(3,3,6),(3,7,2),(3,8,8),
+                     (4,2,9),(4,4,3),(4,6,7),
+                     (5,0,2),(5,1,4),
+                     (6,1,6),(6,2,2),(6,5,3),(6,6,9),(6,8,4),
+                     (7,3,7),(7,6,5),
+                     (8,1,3),(8,4,5)])
+    medpuz._print()
+
+    medpuz_solve = solver(medpuz.puzzle)
+    medpuz.solution(medpuz_solve.solve_backtrack_search())
+
+    medpuz._print()
+
+    table2 = prettytable.PrettyTable(["Sudoku Puzzle 2", '-'])
+    table2.add_row(['time', str(medpuz_solve.time_elapsed) + 's'])
+    table2.add_row(['clues',medpuz.clue_counter])
+    table2.add_row(['backtracks',medpuz_solve.bt_count])
+    table2.add_row(['difficulty', 'medium'])
+    print(table2)
+
+    # Puzzle with _Hard_ difficulty
+    print('-----~`PUZZLE 3`~-----\n')
+    # Puzzle with _Medium_ difficulty
+    hardpuz = sudoku([(0,0,7),(0,1,3),(0,2,4),(0,4,2),(0,8,9),
+                      (1,0,1),(1,5,7),
+                      (2,5,5),(2,6,7),(2,7,6),
+                      (3,7,9),(3,8,7),
+                      (4,1,2),(4,4,4),(4,7,1),
+                      (5,0,6),(5,1,8),
+                      (6,1,5),(6,2,2),(6,3,6),
+                      (7,3,2),(7,8,6),
+                      (8,0,9),(8,4,5),(8,6,2),(8,7,8),(8,8,4)])
+    hardpuz._print()
+
+    hardpuz_solve = solver(hardpuz.puzzle)
+    hardpuz.solution(hardpuz_solve.solve_backtrack_search())
+
+    hardpuz._print()
+
+    table3 = prettytable.PrettyTable(["Sudoku Puzzle 3", '-'])
+    table3.add_row(['time', str(hardpuz_solve.time_elapsed) + 's'])
+    table3.add_row(['clues',hardpuz.clue_counter])
+    table3.add_row(['backtracks',hardpuz_solve.bt_count])
+    table3.add_row(['difficulty', 'hard'])
+    print(table3)
+
+    # Puzzle with _Very Hard_ dificulty
+    print('-----~`PUZZLE 4`~-----\n')
+    # Puzzle with _Medium_ difficulty
+    veryhardpuz = sudoku([(0,3,9),(0,6,4),(0,7,6),
+                          (1,4,5),(1,5,8),(1,6,7),
+                          (2,3,1),(2,4,7),(2,7,5),
+                          (3,2,2),(3,4,9),(3,8,4),
+                          (4,0,1),(4,8,8),
+                          (5,0,5),(5,4,8),(5,6,2),
+                          (6,1,2),(6,4,1),(6,5,9),
+                          (7,2,5),(7,3,8),(7,4,2),
+                          (8,1,3),(8,2,9),(8,5,5)])
+
+    veryhardpuz._print()
+
+    veryhardpuz_solve = solver(veryhardpuz.puzzle)
+    veryhardpuz.solution(veryhardpuz_solve.solve_backtrack_search())
+
+    veryhardpuz._print()
+
+    table4 = prettytable.PrettyTable(["Sudoku Puzzle 4", '-'])
+    table4.add_row(['time', str(veryhardpuz_solve.time_elapsed) + 's'])
+    table4.add_row(['clues',veryhardpuz.clue_counter])
+    table4.add_row(['backtracks',veryhardpuz_solve.bt_count])
+    table4.add_row(['difficulty', 'very hard'])
+    print(table4)
+
 main()
 
