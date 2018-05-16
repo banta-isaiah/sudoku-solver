@@ -29,5 +29,6 @@ All puzzles in these files were taken from [here](https://www.websudoku.com/).
 
 ### Puzzle creation
 
-This ended up being much more difficult than I anticipated... 
+This ended up being much more difficult than I anticipated and was not able to get it working, I got very close but ran into issues when attempting to build my program to test for unique solutions. 
+I will keep working on it and let you know when I got it, but I understand that anything I do after this point will not influence my grade in any way.
 

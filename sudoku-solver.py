@@ -1,3 +1,12 @@
+"""
+Make sure to fill in the following information before submitting your
+assignment. Your grade may be affected if you leave it blank!
+For usernames, make sure to use your Whitman usernames (i.e. exleyas). 
+File name: sudoku-solver.py
+Author username(s): bantaib 
+Date: 5/15/2018 
+"""
+
 import math
 from collections import defaultdict
 import itertools 
@@ -129,11 +138,17 @@ class sudoku_solver:
         '''Selects a variable that has not yet been given a value according to
         the given assignment. Selects first variable in self.variable_list.
         '''
-        if domains == None:
-            for var in self.variable_list:
-                if var not in assignment:
-                    return var
-        return None
+        updated_variables = []
+        for var in self.variable_list:
+            if var not in assignment:
+                updated_variables.append(var)
+        var_least_domains = random.choice(updated_variables)
+        prev_domain_len = len(domains[var_least_domains])
+        for var in updated_variables:
+            if len(domains[var]) < prev_domain_len:
+                var_least_domains = var
+        return var_least_domains
+        #return None
 
     def solve(self):
         '''A helper function that sets up our domains and initial assignment, then 
@@ -166,7 +181,7 @@ class sudoku_solver:
     def backtrack(self, assignment, domains): 
         if len(assignment) == len(domains):
             return assignment
-        var = self.select_unassigned_variable(assignment)   
+        var = self.select_unassigned_variable(assignment, domains)   
         for val in domains[var]:
             assignment[var] = val   
             saved = domains[var]
