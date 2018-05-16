@@ -1,29 +1,29 @@
-# Project Proposal
+# A.I. Final Project - Spring 2018
 
-For my final project I will create a Sudoku Solver. 
+### Installing dependencies
+I have a _requirements.txt_ file that you can run using pip to make sure you have all needed dependencies. (I think there is only one though..)
+I tried doing this with `pip freeze` but realized that saved ALL dependencies located on my machine instead of the ones only being used for my project.
+So I installed [pipreqs](https://github.com/bndr/pipreqs) which is a cool tool that allows you to specify the path to your project.
 
-## Brief Description of Sudoku
+### Running the program
 
-Sudoku is a number puzzle. Taken from Wikipedia:
+By default, my program is solving sudoku puzzles provided by a variety of textfiles.
 
-> The objective is to fill a 9x9 grid with digits so that each column, each row, and each of the nine 3x3 subgrids that compose the grid (also called "boxes, "blocks", or "regions") contains all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution. 
+Sudoku puzzles are represented in the form:
 
-## Type of Problem
-Sudoku is a Constraint Satisfaction Problem as the numbers in a column, box, or row, limit the integers that are allowable in the same box/row/column.
+```
+000000000
+000000000
+000000000
+000000000
+000000000
+000000000
+000000000
+000000000
+000000000
+```
 
-## Possible Problems
-Some Sudoku puzzles are much harder than others. 
-I will be curious to see what the run-time complexity will be for varying difficulties of Sudoku puzzles.
+For now, I only have a textfile contain 1 sudoku puzzle.
 
-I will also have to decide how to handle puzzles with more than one solution, or no solution. 
-
-## Above and Beyond . . . 
-
-It would be very cool to judge the difficulty of a puzzle based on how long or how many comparisons my program makes.
-I would also like to implement the creation of puzzles, however this may be much more difficult and I will do this if I have time.
-
-## Frameworks
-
- - I plan to use Python and not implement a GUI. 
- - The code and this README.md will be posted on a Github repository on my profile.
+### Puzzle creation
 
