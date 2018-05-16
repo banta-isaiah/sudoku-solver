@@ -26,14 +26,12 @@ class sudoku:
             for clue in self.clues:
                 self.puzzle[clue[0]][clue[1]] = clue[2]
                 self.clue_counter += 1
-        
-    
+         
     def add_clues(self, new_clues):
         for clue in new_clues:
             self.puzzle[clue[0]][clue[1]] = clue[2]
             self.clue_counter += 1
-        return
-    
+        return    
 
     def _print(self):
         print('=========================')
@@ -62,7 +60,6 @@ class sudoku:
         for key,value in solutions.items():
             self.puzzle[key[0]][key[1]] = str(value)
         return
-
 
     
 class solver:
@@ -98,7 +95,8 @@ class solver:
 
                         # Insert into Neighbor List
                         self.neighbor_list.append(((i,j),(a,b)))
-  
+
+        # Insert clues into puzzle 
         for i in range(9):
             for j in range(9):
                 if puzzle[i][j] != 0:
@@ -109,9 +107,6 @@ class solver:
         self.bt_count = 0
 
         self.time_elapsed = 0
-      
-
-
 
     def is_solution(self, assignment):
         '''Checks whether a given assignment is actually a solution.
@@ -146,8 +141,10 @@ class solver:
         assignment = self.givens
         for var in self.variable_list:  
             domains[var] = self.domain_list[:]   
+        # Update domains with given clues
         for key,value in self.givens.items():
             domains[key] = [value]
+        # Time our backtracking, AC-3 algorithm
         start = time.clock()
         result = self.backtrack(assignment, domains)
         end = time.clock()
