@@ -211,6 +211,25 @@ class solver:
 
 
 def main(): 
+    print('-----~` test 1`~-----\n')
+    test1 = sudoku()
+    test2 = sudoku()
+    unique_test1 = solver(test1.puzzle)
+    unique_test2 = solver(test2.puzzle)
+    unique_test3 = solver(test1.puzzle)
+
+    print('First test')
+    test1.solution(unique_test1.solve_backtrack_search())
+    test1._print()
+
+    print('Second test')
+    test1.solution(unique_test2.solve_backtrack_search())
+    test1._print()
+    
+    print('Third test')
+    test1.solution(unique_test3.solve_backtrack_search())
+    test1._print()
+    
     print('-----~`PUZZLE 0`~-----\n') 
     # Create a sudoku puzzle with clues
     puzzle1 = sudoku([(0,0,5)])
