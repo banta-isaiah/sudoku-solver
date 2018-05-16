@@ -23,7 +23,11 @@ Sudoku puzzles are represented in the form:
 000000000
 ```
 
-For now, I only have a textfile contain 1 sudoku puzzle.
+I have textfiles with multiple difficulties that are called in my `main()` function.
+
+All puzzles in these files were taken from [here](https://www.websudoku.com/).
 
 ### Puzzle creation
+
+This ended up being much more difficult than I anticipated... 
 

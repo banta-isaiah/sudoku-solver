@@ -48,7 +48,7 @@ class sudoku_solver:
             for cell in clue_row:
                 self.puzzle[row][col] = int(cell)
                 if(int(cell)):
-                    self.givens[(row,col)] = int(cell)
+                    self.givens[(row,col)] = cell
                     self.clue_counter += 1
                 col += 1
                 col = col % 9
@@ -220,8 +220,20 @@ class sudoku_solver:
 
 
 def main():
-    test0 = sudoku_solver('sudoku.txt')
-    test0.solve()
+    test_easy = sudoku_solver('sudoku_easy.txt')
+    test_easy.solve()
+
+    test_med = sudoku_solver('sudoku_med.txt')
+    test_med.solve()
+    
+    test_hard = sudoku_solver('sudoku_hard.txt')
+    test_hard.solve()
+
+    test_evil = sudoku_solver('sudoku_evil.txt')
+    test_evil.solve()
+
+    test_evil2 = sudoku_solver('sudoku_evil2.txt')
+    test_evil2.solve()
 
 main()
 
