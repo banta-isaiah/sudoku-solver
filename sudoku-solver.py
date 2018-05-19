@@ -235,6 +235,15 @@ class sudoku_solver:
 
 
 def main():
+    test_blank = sudoku_solver('blank.txt')
+    test_blank.solve()
+
+    test_blank2 = sudoku_solver('blank.txt')
+    test_blank2.solve()
+
+    test_blank3 = sudoku_solver('blank.txt')
+    test_blank3.solve()
+    '''
     test_easy = sudoku_solver('sudoku_easy.txt')
     test_easy.solve()
 
@@ -249,6 +258,6 @@ def main():
 
     test_evil2 = sudoku_solver('sudoku_evil2.txt')
     test_evil2.solve()
-
+    '''
 main()
 
