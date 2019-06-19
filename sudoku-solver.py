@@ -1,9 +1,5 @@
 """
-Make sure to fill in the following information before submitting your
-assignment. Your grade may be affected if you leave it blank!
-For usernames, make sure to use your Whitman usernames (i.e. exleyas). 
 File name: sudoku-solver.py
-Author username(s): bantaib 
 Date: 5/15/2018 
 """
 
